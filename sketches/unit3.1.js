@@ -1,4 +1,5 @@
-//Create new sketch in terminal: canvas-sketch -sketch-name --new --open
+//Create new sketch in terminal: 
+//canvas-sketch -sketch-name --new --open
 
 const canvasSketch = require('canvas-sketch');
 
