@@ -14,14 +14,16 @@ const randomRange = (min,max) => {
   return Math.random() * (max - min) + min;
 }
 
-const randomColor = Math.floor(Math.random()*16777215).toString(16);
+let color = Math.floor(Math.random()*16777215).toString(16);
+const randomColor = () => `#${color}`
+
 
 const sketch = () => {
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
-    context.fillStyle = randomColor();
+    context.fillStyle = 'black';
     
     const cx = width * 0.5;
     const cy = height * 0.5
@@ -41,10 +43,10 @@ const sketch = () => {
     // draw circle
     context.beginPath();
     context.arc(0,0, 430, 0, Math.PI * 2);
-    context.fillStyle = '#723380'
+    context.fillStyle = 'tan'
     context.fill();
     context.lineWidth = 20;
-    context.strokeStyle = 'green'
+    context.strokeStyle = 'black'
     context.stroke();
     context.restore();
 
