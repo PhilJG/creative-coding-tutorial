@@ -1,5 +1,5 @@
 const canvasSketch = require('canvas-sketch');
-const math =require(`canvas-sketch-util/math`);
+const math = require(`canvas-sketch-util/math`);
 const random = require(`canvas-sketch-util/random`);
 
 const settings = {
@@ -10,13 +10,16 @@ const degToRad = (degrees) => {
   return degrees / 180 * Math.PI;
 }
 
-const randomRange = (min,max) => {
-  return Math.random() * (max - min) + min;
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
-let color = Math.floor(Math.random()*16777215).toString(16);
-const randomColor = () => `#${color}`
-
+getRandomColor()
 
 const sketch = () => {
   return ({ context, width, height }) => {
@@ -43,7 +46,7 @@ const sketch = () => {
     // draw circle
     context.beginPath();
     context.arc(0,0, 430, 0, Math.PI * 2);
-    context.fillStyle = 'tan'
+    context.fillStyle = getRandomColor();
     context.fill();
     context.lineWidth = 20;
     context.strokeStyle = 'black'
@@ -67,7 +70,7 @@ const sketch = () => {
        
        //draw rectangle
        context.beginPath()
-       context.rect(-w * 0.5,random.range(0, -h * 0.5), w, h)
+       context.rect(-w * 5,random.range(0, -h * 2), w, h)
        context.fill();
        context.restore();
  
@@ -89,7 +92,7 @@ const sketch = () => {
      context.strokeStyle = 'red';
     // draw circle
     context.beginPath();
-    context.arc(0,0, random.range(50, 150), 0, Math.PI * 2);
+    context.arc(0,0, random.range(50, 190), 0, Math.PI * 2);
     context.fill();
     context.restore();
 
