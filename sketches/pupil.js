@@ -36,7 +36,7 @@ const sketch = () => {
 
     let x,y;
 
-    const num = random.range(12 , 40);
+    const num = random.range(500 , 2000);
     const radius = width * 0.3;
     //outer pupil
     context.save();
@@ -71,6 +71,7 @@ const sketch = () => {
        //draw rectangle
        context.beginPath()
        context.rect(-w * 5,random.range(0, -h * 2), w, h)
+       context.fillStyle = getRandomColor()
        context.fill();
        context.restore();
  
@@ -81,7 +82,8 @@ const sketch = () => {
        context.lineWidth = random.range(5,20);
  
        context.beginPath();
-       context.arc(0,  0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1,5));
+       context.arc(0,  0, radius * random.range(0.1, 1.3), slice * random.range(1, -8), slice * random.range(1,5));
+       context.strokeStyle = getRandomColor();
        context.stroke();
        context.restore();
      }
@@ -89,7 +91,6 @@ const sketch = () => {
   context.save();
     //set location of circle
     context.translate(540, 540);
-     context.strokeStyle = 'red';
     // draw circle
     context.beginPath();
     context.arc(0,0, random.range(50, 190), 0, Math.PI * 2);
@@ -102,3 +103,4 @@ const sketch = () => {
 
 
 canvasSketch(sketch, settings);
+
