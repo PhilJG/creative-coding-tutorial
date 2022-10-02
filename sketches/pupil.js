@@ -3,12 +3,19 @@ const math = require(`canvas-sketch-util/math`);
 const random = require(`canvas-sketch-util/random`);
 
 const settings = {
-  dimensions: [ 1080, 1080 ]
+  dimensions: [ 1080, 1080 ],
+  animate: true
+};
+
+const animate = () => {
+  console.log('animate');
+  requestAnimationFrame(animate)
 };
 
 const degToRad = (degrees) => {
   return degrees / 180 * Math.PI;
 }
+
 
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -19,10 +26,9 @@ function getRandomColor() {
   return color;
 }
 
-getRandomColor()
 
 const sketch = () => {
-  return ({ context, width, height }) => {
+  return ({ context, width, height, frame }) => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
@@ -70,7 +76,14 @@ const sketch = () => {
        
        //draw rectangle
        context.beginPath()
+       
+
        context.rect(-w * 5,random.range(0, -h * 2), w, h)
+       
+       const line = context.createLinearGradient(0, 0, width, height);
+line.addColorStop(0, getRandomColor());
+line.addColorStop(1, 'orange');
+
        context.fillStyle = getRandomColor()
        context.fill();
        context.restore();
@@ -82,8 +95,9 @@ const sketch = () => {
        context.lineWidth = random.range(5,20);
  
        context.beginPath();
-       context.arc(0,  0, radius * random.range(0.1, 1.3), slice * random.range(1, -8), slice * random.range(1,5));
-       context.strokeStyle = getRandomColor();
+       context.arc(0,  0, radius * random.range(0.1, 1.3), slice * random.range(1, -8), slice * random.range(1,10));
+       
+       context.strokeStyle = line;
        context.stroke();
        context.restore();
      }
